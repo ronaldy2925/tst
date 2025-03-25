@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Aniversário Jovana!</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            font-family: 'Arial', sans-serif;
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        /* New animations */
+        @keyframes rainbow {
+            0% { color: #ff0000; }
+            25% { color: #ffd700; }
+            50% { color: #7fff00; }
+            75% { color: #ff69b4; }
+            100% { color: #ff0000; }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: rainbow 4s infinite;
+        }
+
+        .birthday-cake {
+            font-size: 100px;
+            margin: 20px 0;
+            animation: bounce 2s infinite, rotate 5s infinite linear;
+        }
+
+        .message p {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards;
+        }
+
+        .message p:nth-child(1) { animation-delay: 0.5s; }
+        .message p:nth-child(2) { animation-delay: 1s; }
+        .message p:nth-child(3) { animation-delay: 1.5s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .button {
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .button {
+            background-color: white;
+            color: #ff1493;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: transform 0.3s;
+        }
+
+        .button:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Feliz Aniversário Jovana! 🎉</h1>
+        <div class="birthday-cake">🎂</div>
+        <div class="message">
+            <p>Que este dia seja tão especial quanto você!</p>
+            <p>Feliz aniversario priminha, é muito bom saber que tenho alguem como vc ao meu lado</p>
+            <p>parabens jaja te amo muito! </p>
+        </div>
+        <a href="#" class="button">Celebrar! 🎈</a>
+    </div>
+    <img src="jojo.jfif" width="400" height="300" justify-content="left">
+
+    <script>
+        // Enhanced heart animation
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.style.position = 'fixed';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '-20px';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            heart.style.animation = `fall ${Math.random() * 3 + 2}s linear`;
+            heart.style.transform = `rotate(${Math.random() * 360}deg)`;
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        // Add click effect
+        document.addEventListener('click', (e) => {
+            const spark = document.createElement('div');
+            spark.style.position = 'fixed';
+            spark.style.left = e.clientX + 'px';
+            spark.style.top = e.clientY + 'px';
+            spark.style.fontSize = '2em';
+            spark.innerHTML = '✨';
+            document.body.appendChild(spark);
+
+            spark.animate([
+                { transform: 'scale(0) rotate(0deg)', opacity: 1 },
+                { transform: 'scale(1.5) rotate(360deg)', opacity: 0 }
+            ], {
+                duration: 1000
+            }).onfinish = () => spark.remove();
+        });
+
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>
